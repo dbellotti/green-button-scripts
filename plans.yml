@@ -1,0 +1,30 @@
+- name: EV-TOU-5
+  winter:
+    on_peak: 0.51149
+    off_peak: 0.44775
+    super_off_peak: 0.1452
+  summer:
+    on_peak: 0.81629
+    off_peak: 0.48129
+    super_off_peak: 0.15351
+  service_fee: 192.00
+- name: EV-TOU-2
+  winter:
+    on_peak: 0.52747
+    off_peak: 0.46373
+    super_off_peak: 0.27649
+  summer:
+    on_peak: 0.83227
+    off_peak: 0.49727
+    super_off_peak: 0.2848
+  service_fee: 0.00
+- name: TOU-DR-P
+  winter:
+    on_peak: 0.63708
+    off_peak: 0.55228
+    super_off_peak: 0.52768
+  summer:
+    on_peak: 0.6088
+    off_peak: 0.57067
+    super_off_peak: 0.40678
+  service_fee: 0.00

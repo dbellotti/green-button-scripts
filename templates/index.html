@@ -1,0 +1,16 @@
+<form action="/calculate" method="post">
+    <label for="start_date">Start Date:</label>
+    <input type="text" id="start_date" name="start_date">
+    <br>
+    <label for="end_date">End Date:</label>
+    <input type="text" id="end_date" name="end_date">
+    <br>
+    <label for="pricing_plan">Select Pricing Plan:</label>
+    <select id="pricing_plan" name="pricing_plan">
+        {% for i, plan in enumerate(pricing_plans, 1) %}
+        <option value="{{ i }}">{{ plan['name'] }}</option>
+        {% endfor %}
+    </select>
+    <br>
+    <input type="submit" value="Calculate">
+</form>
