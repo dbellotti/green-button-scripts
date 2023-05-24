@@ -2,13 +2,8 @@
 
 {% block content %}
     <div class="container">
-        <h1 class="my-4 text-center">Electricity Consumption Calculator</h1>
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <p class="lead text-center">This tool helps you to calculate your electricity consumption and cost over a given period based on different pricing plans. Please enter your desired date range and select a pricing plan to proceed.</p>
-            </div>
-        </div>
-        <form action="/calculate" method="post" class="row g-3 justify-content-center">
+        <h1 class="my-4">Electricity Consumption Calculator</h1>
+        <form action="/calculate" method="post" enctype="multipart/form-data" class="row g-3">
             <div class="col-md-6">
                 <label for="start_date" class="form-label">Start Date:</label>
                 <input type="date" id="start_date" name="start_date" class="form-control">
@@ -17,7 +12,7 @@
                 <label for="end_date" class="form-label">End Date:</label>
                 <input type="date" id="end_date" name="end_date" class="form-control">
             </div>
-            <div class="col-md-12">
+            <div class="col-12">
                 <label for="pricing_plan" class="form-label">Select Pricing Plan:</label>
                 <select id="pricing_plan" name="pricing_plan" class="form-select">
                     {% for i, plan in enumerate(pricing_plans, 1) %}
@@ -25,8 +20,13 @@
                     {% endfor %}
                 </select>
             </div>
-            <div class="col-md-12 text-center">
-                <input type="submit" value="Calculate" class="btn btn-primary mt-3">
+            <div class="col-12">
+                <label for="csv_file" class="form-label">Upload CSV File:</label>
+                <input type="file" id="csv_file" name="csv_file" accept=".csv" class="form-control">
+                <small class="form-text text-muted">If no file is uploaded, the default data will be used.</small>
+            </div>
+            <div class="col-12">
+                <input type="submit" value="Calculate" class="btn btn-primary">
             </div>
         </form>
     </div>

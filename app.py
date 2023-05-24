@@ -4,6 +4,7 @@ from collections import defaultdict
 from datetime import datetime
 import yaml
 
+from csv_uploader import CSVUploader
 from holiday_date_identifier import HolidayDateIdentifier
 from main_script import load_plans, calculate_totals
 from period_identifier import PeriodIdentifier
@@ -16,7 +17,11 @@ def index():
 
 @app.route("/calculate", methods=["POST"])
 def calculate():
-    input_csv_file = "elec-5.22-5.23.csv"
+    # Use the uploader to handle file upload
+    uploader = CSVUploader(app, 'example.csv')
+    input_csv_file = uploader.upload()  # try to upload a file, or use the default one
+
+
     start_date_str = request.form.get("start_date") or None
     end_date_str = request.form.get("end_date") or None
 
