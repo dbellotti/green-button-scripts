@@ -1,16 +1,40 @@
-{% for date_range, season_totals in totals.items() %}
-    <h3>Date Range: {{ date_range[0].strftime('%m/%d/%Y') }} - {{ date_range[1].strftime('%m/%d/%Y') }}</h3>
+{% extends 'layout.html' %}
 
-    {% for season, time_totals in season_totals.items() %}
-        <h4>{{ season }}</h4>
-        <p>
-            On Peak: {{ time_totals['On Peak'] }} kWh (Cost: ${{ time_totals['On Peak'] * selected_plan[season.lower()]['on_peak'] }})<br>
-            Off Peak: {{ time_totals['Off Peak'] }} kWh (Cost: ${{ time_totals['Off Peak'] * selected_plan[season.lower()]['off_peak'] }})<br>
-            Super Off Peak: {{ time_totals['Super Off Peak'] }} kWh (Cost: ${{ time_totals['Super Off Peak'] * selected_plan[season.lower()]['super_off_peak'] }})<br>
-        </p>
-    {% endfor %}
-
-    <p>
-        Combined Total: {{ combined_total }} kWh (Cost: ${{ combined_cost }})<br>
-    </p>
-{% endfor %}
+{% block content %}
+    <div class="container">
+        <h1 class="my-4">Calculation Results</h1>
+        {% for date_range, season_totals in totals.items() %}
+            <h3>Date Range: {{ date_range[0].strftime('%m/%d/%Y') }} - {{ date_range[1].strftime('%m/%d/%Y') }}</h3>
+            {% for season, time_totals in season_totals.items() %}
+                <div class="card my-3">
+                    <div class="card-body">
+                        <h4 class="card-title">{{ season }}</h4>
+                        <div class="row">
+                            <div class="col-md-4 fw-bold">On Peak:</div>
+                            <div class="col-md-4 text-end">{{ time_totals['On Peak']|round(3) }} kWh</div>
+                            <div class="col-md-4 text-end">(Cost: ${{ (time_totals['On Peak'] * selected_plan[season.lower()]['on_peak'])|round(2) }})</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 fw-bold">Off Peak:</div>
+                            <div class="col-md-4 text-end">{{ time_totals['Off Peak']|round(3) }} kWh</div>
+                            <div class="col-md-4 text-end">(Cost: ${{ (time_totals['Off Peak'] * selected_plan[season.lower()]['off_peak'])|round(2) }})</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 fw-bold">Super Off Peak:</div>
+                            <div class="col-md-4 text-end">{{ time_totals['Super Off Peak']|round(3) }} kWh</div>
+                            <div class="col-md-4 text-end">(Cost: ${{ (time_totals['Super Off Peak'] * selected_plan[season.lower()]['super_off_peak'])|round(2) }})</div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            <div class="alert alert-info mt-4" role="alert">
+                <div class="row">
+                    <div class="col-md-4 fw-bold">Combined Total:</div>
+                    <div class="col-md-4 text-end">{{ combined_total|round(3) }} kWh</div>
+                    <div class="col-md-4 text-end">(Cost: ${{ combined_cost|round(2) }})</div>
+                </div>
+            </div>
+        {% endfor %}
+        <a href="/" class="btn btn-secondary mt-3">Back</a>
+    </div>
+{% endblock %}

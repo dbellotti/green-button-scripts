@@ -21,7 +21,7 @@ You will need Python 3.7 or later to run this utility.
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/SDGEBillCalculator.git
+git clone https://github.com/dbellotti/green-button-scripts.git
 ```
 
 2. Install the required packages:
@@ -40,7 +40,7 @@ To use it:
 2. Update the `plans.yml` file with your TOU pricing plans.
 3. Run the main script and follow the prompts to input the start and end dates and select a pricing plan:
 ```bash
-python3 main_script.py
+python main_script.py
 ```
 The utility will output the total kilowatt-hours and cost for each period (On Peak, Off Peak, Super Off Peak) and season (Winter, Summer), as well as the combined total and cost.
 

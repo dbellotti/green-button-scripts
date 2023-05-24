@@ -17,8 +17,8 @@ def index():
 @app.route("/calculate", methods=["POST"])
 def calculate():
     input_csv_file = "elec-5.22-5.23.csv"
-    start_date_str = request.form.get("start_date")
-    end_date_str = request.form.get("end_date")
+    start_date_str = request.form.get("start_date") or None
+    end_date_str = request.form.get("end_date") or None
 
     totals = calculate_totals(input_csv_file, start_date_str, end_date_str)
     pricing_plans = load_plans()

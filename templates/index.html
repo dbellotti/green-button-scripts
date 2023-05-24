@@ -1,16 +1,33 @@
-<form action="/calculate" method="post">
-    <label for="start_date">Start Date:</label>
-    <input type="text" id="start_date" name="start_date">
-    <br>
-    <label for="end_date">End Date:</label>
-    <input type="text" id="end_date" name="end_date">
-    <br>
-    <label for="pricing_plan">Select Pricing Plan:</label>
-    <select id="pricing_plan" name="pricing_plan">
-        {% for i, plan in enumerate(pricing_plans, 1) %}
-        <option value="{{ i }}">{{ plan['name'] }}</option>
-        {% endfor %}
-    </select>
-    <br>
-    <input type="submit" value="Calculate">
-</form>
+{% extends 'layout.html' %}
+
+{% block content %}
+    <div class="container">
+        <h1 class="my-4 text-center">Electricity Consumption Calculator</h1>
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <p class="lead text-center">This tool helps you to calculate your electricity consumption and cost over a given period based on different pricing plans. Please enter your desired date range and select a pricing plan to proceed.</p>
+            </div>
+        </div>
+        <form action="/calculate" method="post" class="row g-3 justify-content-center">
+            <div class="col-md-6">
+                <label for="start_date" class="form-label">Start Date:</label>
+                <input type="date" id="start_date" name="start_date" class="form-control">
+            </div>
+            <div class="col-md-6">
+                <label for="end_date" class="form-label">End Date:</label>
+                <input type="date" id="end_date" name="end_date" class="form-control">
+            </div>
+            <div class="col-md-12">
+                <label for="pricing_plan" class="form-label">Select Pricing Plan:</label>
+                <select id="pricing_plan" name="pricing_plan" class="form-select">
+                    {% for i, plan in enumerate(pricing_plans, 1) %}
+                    <option value="{{ i }}">{{ plan['name'] }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-md-12 text-center">
+                <input type="submit" value="Calculate" class="btn btn-primary mt-3">
+            </div>
+        </form>
+    </div>
+{% endblock %}
