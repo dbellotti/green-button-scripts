@@ -1,0 +1,29 @@
+name: Python application test
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python 3.9
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.9
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        # Add any other dependencies your tests need here
+    - name: Run tests
+      run: |
+        pytest test_holidate_date_identifier.py
+        pytest test_period_identifier.py
+        pytest test_period_totals.py
