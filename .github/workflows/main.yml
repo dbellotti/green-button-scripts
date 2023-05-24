@@ -24,6 +24,12 @@ jobs:
         # Add any other dependencies your tests need here
     - name: Run tests
       run: |
-        pytest test_holidate_date_identifier.py
-        pytest test_period_identifier.py
-        pytest test_period_totals.py
+        pytest
+    - name: Deploy to Heroku
+      if: ${{ github.event_name == 'push' }}
+      uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
+      with:
+        heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+        heroku_app_name: "sdge-bill-calculator" # Replace with your app's name
+        heroku_email: "${{secrets.HEROKU_EMAIL}}" # Replace with your Heroku email
+
