@@ -7,7 +7,7 @@
     on_peak: 0.81629
     off_peak: 0.48129
     super_off_peak: 0.15351
-  service_fee: 192.00
+  monthly_service_fee: 16
 - name: EV-TOU-2
   winter:
     on_peak: 0.52747
@@ -17,7 +17,7 @@
     on_peak: 0.83227
     off_peak: 0.49727
     super_off_peak: 0.2848
-  service_fee: 0.00
+  monthly_service_fee: 0.00
 - name: TOU-DR-P
   winter:
     on_peak: 0.63708
@@ -27,4 +27,4 @@
     on_peak: 0.6088
     off_peak: 0.57067
     super_off_peak: 0.40678
-  service_fee: 0.00
+  monthly_service_fee: 0.00

@@ -1,5 +1,8 @@
 import pytest
-from main_script import calculate_totals
+from datetime import datetime
+from file_handler import FileHandler
+from solar_intensity_reader import SolarIntensityReader
+from energy_data_processor import EnergyDataProcessor
 
 # Define the test function
 def test_super_off_peak_total():
@@ -7,9 +10,15 @@ def test_super_off_peak_total():
     input_csv_file = "elec-5.22-5.23.csv"
     start_date_str = "05/01/2022"
     end_date_str = "05/02/2022"
+    solar_intensity_file = "ssolar_intensity.csv"
+
+    file_handler = FileHandler()
+    input_data = file_handler.read_csv(input_csv_file)
+    solar_intensity_data = SolarIntensityReader(solar_intensity_file).read_solar_intensity()
 
     # Run the main script to calculate the totals
-    totals = calculate_totals(input_csv_file, start_date_str, end_date_str)
+    processor = EnergyDataProcessor(start_date_str, end_date_str)
+    totals = processor.calculate_totals(input_data, solar_intensity_data)
 
     for date_range, season_totals in totals.items():
         # Assert the "super off peak" total is 3.87 for May 1 in the Winter season

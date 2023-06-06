@@ -1,0 +1,10 @@
+- name: Plan 1
+  summer: 
+    on_peak: 0.22
+    off_peak: 0.18
+    super_off_peak: 0.14
+  winter: 
+    on_peak: 0.22
+    off_peak: 0.18
+    super_off_peak: 0.14
+  service_fee: 10.0
