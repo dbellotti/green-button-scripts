@@ -24,10 +24,12 @@ def index():
 @app.route("/calculate", methods=["POST"])
 def calculate():
     # Use the uploader to handle file upload
-    uploader = CSVUploader(app, 'example.csv')
-    input_csv_file = uploader.upload()  # try to upload a file, or use the default one
-    input_data = file_handler.read_csv(input_csv_file)
-    solar_intensity_data = SolarIntensityReader("solar_intensity.csv").read_solar_intensity()
+    gb_uploader = CSVUploader(app, 'green_button_csv_file', 'example.csv')
+    gb_input_csv_file = gb_uploader.upload()
+    gb_input_data = file_handler.read_csv(gb_input_csv_file)
+    spe_uploader = CSVUploader(app, 'solar_estimation_csv_file')
+    spe_input_csv_file = spe_uploader.upload()
+    solar_intensity_data = SolarIntensityReader(spe_input_csv_file).read_solar_intensity()
 
     start_date_str = request.form.get("start_date") or None
     end_date_str = request.form.get("end_date") or None
@@ -39,7 +41,7 @@ def calculate():
 
     # Calculate totals
     energy_data_processor = EnergyDataProcessor(start_date_str, end_date_str)
-    totals_by_month = energy_data_processor.calculate_totals_by_month(input_data, solar_intensity_data)
+    totals_by_month = energy_data_processor.calculate_totals_by_month(gb_input_data, solar_intensity_data)
 
     # Prompt the user to select a pricing plan
     selected_plan_index = int(request.form.get("pricing_plan")) - 1

@@ -21,9 +21,14 @@
                 </select>
             </div>
             <div class="col-12">
-                <label for="csv_file" class="form-label">Upload CSV File:</label>
-                <input type="file" id="csv_file" name="csv_file" accept=".csv" class="form-control">
+                <label for="green_button_csv_file" class="form-label">Upload Green Button CSV File:</label>
+                <input type="file" id="green_button_csv_file" name="green_button_csv_file" accept=".csv" class="form-control">
                 <small class="form-text text-muted">If no file is uploaded, the default data will be used.</small>
+            </div>
+            <div class="col-12">
+                <label for="solar_estimation_csv_file" class="form-label">Upload Solar Estimation CSV File:</label>
+                <input type="file" id="solar_estimation_csv_file" name="solar_estimation_csv_file" accept=".csv" class="form-control">
+                <small class="form-text text-muted">If solar production data is contained in the green button data export, or no file is uploaded, then none will be used.</small>
             </div>
             <div class="col-12">
                 <input type="submit" value="Calculate" class="btn btn-primary">
