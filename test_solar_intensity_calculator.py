@@ -34,15 +34,6 @@ class TestSolarIntensityCalculator(unittest.TestCase):
 
         self.assertAlmostEqual(percentage_difference, 1, places=0)
 
-    #def test_calculate_daylight_intensity(self):
-    #    energy_per_day = 100.0
-    #    energy_per_hour = 1.0
-    #    daylight_hours = 12.0
-    #    intensity_list = calculate_daylight_intensity(energy_per_hour, daylight_hours)
-
-    #    # Assert that the sum of intensity_list equals energy_per_day
-    #    assert sum(intensity_list) == pytest.approx(energy_per_day)
-
 
 if __name__ == '__main__':
     unittest.main()
